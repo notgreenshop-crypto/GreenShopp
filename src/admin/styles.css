@@ -1,0 +1,24 @@
+:root { --bg:#0b0c10; --panel:#111217; --muted:#7a7f8c; --text:#eaeaea; --primary:#6ee7b7; --danger:#f87171; }
+.admin-layout { display:flex; min-height:100vh; }
+.sidebar { width:240px; background:var(--panel); padding:16px; display:flex; flex-direction:column; gap:12px; border-right:1px solid #1e2030; }
+.sidebar .brand { font-weight:700; font-size:18px; margin-bottom:8px; }
+.sidebar nav button { background:transparent; border:1px solid #1f2335; color:var(--text); border-radius:10px; padding:10px 12px; margin-bottom:8px; cursor:pointer; }
+.sidebar nav button.active { border-color:var(--primary); }
+.content { flex:1; padding:24px; }
+.toolbar { display:flex; justify-content:space-between; margin-bottom:12px; }
+.table { display:grid; gap:6px; }
+.thead, .trow { display:grid; grid-template-columns:2fr 1fr 1fr 1fr 1fr 1.5fr; gap:8px; padding:12px; border:1px solid #1e2030; border-radius:10px; background:rgba(255,255,255,0.02); }
+.badge { padding:4px 8px; border-radius:999px; border:1px solid #444; font-size:12px; }
+.badge.success { border-color:var(--primary); }
+.btn { border:1px solid #333; border-radius:8px; padding:8px 12px; cursor:pointer; color:var(--text); background:transparent; }
+.btn.primary { border-color:var(--primary); }
+.btn.danger { border-color:var(--danger); color:var(--danger); }
+.modal-backdrop { position:fixed; inset:0; background:rgba(0,0,0,0.6); display:flex; align-items:center; justify-content:center; }
+.modal { width:min(880px,94vw); background:var(--panel); border:1px solid #1e2030; border-radius:12px; padding:20px; }
+.form-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.form-grid .col-2 { grid-column:span 2; }
+.form-grid .right { display:flex; justify-content:flex-end; gap:10px; }
+input,textarea,select { background:#0f1117; color:var(--text); border:1px solid #25293c; border-radius:10px; padding:10px; }
+.login-wrapper { height:100vh; display:flex; align-items:center; justify-content:center; }
+.card { background:var(--panel); padding:24px; border-radius:10px; width:min(420px,90vw); display:flex; flex-direction:column; gap:10px; }
+.error { color:var(--danger); font-size:12px; }
