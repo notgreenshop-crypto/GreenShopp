@@ -3,23 +3,29 @@ import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../config/firebase";
 
 export default function MaintenancePage() {
-  const ref = doc(db, "settings", "app");
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    (async () => {
+    const fetchData = async () => {
+      const ref = doc(db, "settings", "app");
       const snap = await getDoc(ref);
       if (snap.exists()) setData(snap.data());
-    })();
+    };
+
+    fetchData();
   }, []);
 
   const save = async () => {
     setLoading(true);
+
+    const ref = doc(db, "settings", "app");
+
     await updateDoc(ref, {
       maintenanceMode: !!data.maintenanceMode,
       maintenanceMessage: data.maintenanceMessage || "",
     });
+
     setLoading(false);
     alert("✅ Maintenance settings updated!");
   };
@@ -34,7 +40,9 @@ export default function MaintenancePage() {
           <input
             type="checkbox"
             checked={!!data.maintenanceMode}
-            onChange={(e) => setData({ ...data, maintenanceMode: e.target.checked })}
+            onChange={(e) =>
+              setData({ ...data, maintenanceMode: e.target.checked })
+            }
             className="sr-only peer"
           />
           <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:bg-black"></div>
@@ -42,17 +50,27 @@ export default function MaintenancePage() {
         </label>
       </div>
 
-      <div className={`space-y-2 transition-opacity ${data.maintenanceMode ? "opacity-100" : "opacity-50"}`}>
-        <label className="text-sm text-gray-600">Maintenance Message</label>
+      <div
+        className={`space-y-2 transition-opacity ${
+          data.maintenanceMode ? "opacity-100" : "opacity-50"
+        }`}
+      >
+        <label className="text-sm text-gray-600">
+          Maintenance Message
+        </label>
         <textarea
           rows={3}
           disabled={!data.maintenanceMode}
           className={`w-full rounded-xl border border-gray-200 bg-white/70 px-4 py-3 outline-none focus:ring-2 focus:ring-black/10 ${
-            !data.maintenanceMode ? "cursor-not-allowed bg-gray-100" : ""
+            !data.maintenanceMode
+              ? "cursor-not-allowed bg-gray-100"
+              : ""
           }`}
           placeholder="It will take a while. Please check back later!"
           value={data.maintenanceMessage || ""}
-          onChange={(e) => setData({ ...data, maintenanceMessage: e.target.value })}
+          onChange={(e) =>
+            setData({ ...data, maintenanceMessage: e.target.value })
+          }
         />
       </div>
 
