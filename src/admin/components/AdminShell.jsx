@@ -1,6 +1,6 @@
 import React from 'react';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
-import { LogOut, Package, Settings as Cog, LayoutGrid, CreditCard, Wrench } from 'lucide-react';
+import { LogOut, Settings as Cog, LayoutGrid, CreditCard, Wrench } from 'lucide-react';
 
 export default function AdminShell({ onLogout }) {
   const navigate = useNavigate();
@@ -75,7 +75,7 @@ export default function AdminShell({ onLogout }) {
         {/* Main */}
         <div className="col-span-12 lg:col-span-9">
           <div className="glass-card p-4 lg:p-6">
-            <Outlet /> {/* ✅ Nested route content render হবে এখানে */}
+            <Outlet />
           </div>
         </div>
       </div>
